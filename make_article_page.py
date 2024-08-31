@@ -23,4 +23,10 @@ def make_article_page(headline, article):
     );
     }
     """
-    return article
+    return page
+
+
+if __name__=='__main__':
+    article = "A body Another body Yet another body "*10
+    headline = "A headline"
+    print(make_article_page(headline=headline, article=article))

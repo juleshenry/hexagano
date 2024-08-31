@@ -22,4 +22,6 @@ def producir():
     return [(t,a,) for t,a in zip(titulares, articulos)]
 
 if __name__ == "__main__":
-    producir()
+    tit_art = producir()
+    import pprint
+    pprint.pprint(tit_art)
