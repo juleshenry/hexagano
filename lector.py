@@ -15,9 +15,11 @@ async def leer(edition):
     """
     async with Surreal("ws://localhost:8000/rpc") as db:
         await db.signin({"user": "root", "pass": "root"})
-        await db.use((ns:="dev_v1"), (db_name:="headlines"))  # namespace, database
+        await db.use((ns:="dev_v1"), (db_name:="headlines"))
+        query = f"""
+            SELECT * FROM {db_name} WHERE edition == {int(edition)};
+            """  # namespace, database
+        print("Calling query:\n",query)
         return await db.query(
-            f"""
-            SELECT * FROM {db_name} WHERE edition == {edition};
-            """
+            query
         )

@@ -7,15 +7,12 @@ import sys
 def shell_main():
     print("Calling Hexagano with edition: ", sys.argv[1])
     # Uncomment when in production
-    # main(edition=sys.argv[1])
+    main(edition=sys.argv[1])
 
 
 def main(edition=1):
     papelerito = canillita.Canillita("press_release")
-    headlines = {}
-    HEADS = []
     head_art = producir(edition)
-    print(head_art)
     sort_by_headlines = sorted(
         [
             (
@@ -30,12 +27,17 @@ def main(edition=1):
     headlines, articles = [x[0] for x in sort_by_headlines], [y[1] for y in sort_by_headlines]
     # fmt: on
     formatted_headlines = [
-        "-".join(h.split(" ")[:10])
+        "-".join(h.replace('-','').split(" ")[:10])
         .replace("'", "")
         .replace("´", "")
         .replace(",", "")
         .replace("(", "")
         .replace(")", "")
+        .replace(":", "")
+        .replace("'", "")
+        .replace('"', "")
+        .replace('|','')
+        .replace('*','')
         for h in headlines
     ]
     path = f"e{edition}"
@@ -45,4 +47,4 @@ def main(edition=1):
 
 
 if __name__ == "__main__":
-    main(edition=1)
+    shell_main()

@@ -1,6 +1,8 @@
+
 def make_article_page(headline, article):
-    # format: off
-    page = """import Link from "next/link";
+    # fmt: off
+    page = \
+"""import Link from "next/link";
 import styles from "../../catalog.module.css";
 
 export default function MakePage() {
@@ -23,11 +25,11 @@ return (
 );
 }
     """
-    # format: on
+    # fmt: on
     return page
 
 
-if __name__ == "__main__":
-    article = "A body Another body Yet another body " * 5
+if __name__=='__main__':
+    article = "A body Another body Yet another body "*5
     headline = "A headline"
     print(make_article_page(headline=headline, article=article))
