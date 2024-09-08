@@ -11,3 +11,4 @@ class Hexagano:
         priority, one will be headline, others lesser...
         {article: "...", priority: "...", category: ""}
 
+`poetry shell` to get it going.

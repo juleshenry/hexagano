@@ -1,7 +1,7 @@
 import os
 from beomju import Beomju
 import shutil
-
+from make_article_page import make_article_page
 
 class Canillita:
 
@@ -25,8 +25,25 @@ class Canillita:
     def rm_folders(self, path):
         shutil.rmtree(path)
 
-    def make_page(self, path):
-        pass
+    def make_pages(self, path, headlines, articles):
+        assert len(headlines) == len(articles)
+        for h,a in zip(headlines, articles):
+            print('**'*10)
+            print(h)
+            print('**'*10)
+            print('^^^^^^'*10)
+            print(a)
+            print('^^^^^^'*10)
+        sorted_ha = sorted(zip(headlines, articles), key=lambda x: x[0])
+        for ha,folder in zip(sorted_ha, sorted(os.listdir(path))):
+            # bug mismatches articles due to alphabeticazlication 
+            h, a = ha
+            print('>>>',h,'|||' ,folder)
+            folder_path = os.path.join(path, folder)
+            if os.path.isdir(folder_path):
+                page_path = os.path.join(folder_path, "page.jsx")
+                with open(page_path, "w") as file:
+                    file.write(make_article_page(h, a))
 
 if __name__ == "__main__":
     papelerito = Canillita(Beomju())

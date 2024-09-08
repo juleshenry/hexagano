@@ -1,1 +1,0 @@
-`poetry shell` to get it going.

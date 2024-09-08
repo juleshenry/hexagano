@@ -1,9 +1,9 @@
 
 
-def make_newsfeed(titulares):
-    news_template = """
-    <hr className={styles.separator} />
-    <h2 className={styles.titular}>###</h2>
+def make_newsfeed(titulares, edition_index):
+    news_template = f"""
+    <hr className={{styles.separator}} />
+    <Link className={{styles.titular}} href="/e{edition_index}/###">###</Link>
     """
     html = ""
     for titular in titulares:
@@ -15,7 +15,7 @@ def make_newsfeed(titulares):
         final_html += ' '*10 + l + "\n"
     return final_html
 
-def make_home_page(titulares):
+def make_home_page(titulares, edition_index):
     home_template = """
     import Link from "next/link";
     import Head from "next/head";
@@ -34,7 +34,7 @@ def make_home_page(titulares):
               ONE WORLD GAZETTE
             </Link>
             <div className={styles.newsFeed}>"""
-    home_template += make_newsfeed(titulares)
+    home_template += make_newsfeed(titulares, edition_index)
     home_template +="""
             </div>
             <Link className={styles.bigButton} href="/catalog">
