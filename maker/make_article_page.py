@@ -1,7 +1,8 @@
 
 def make_article_page(headline, article):
-    page = """
-import Link from "next/link";
+    # format: off
+    page = \
+"""import Link from "next/link";
 import styles from "../../catalog.module.css";
 
 export default function MakePage() {
@@ -24,6 +25,7 @@ return (
 );
 }
     """
+    # format: on
     return page
 
 

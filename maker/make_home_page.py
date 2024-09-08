@@ -16,37 +16,39 @@ def make_newsfeed(titulares, edition_index):
     return final_html
 
 def make_home_page(titulares, edition_index):
-    home_template = """
-    import Link from "next/link";
-    import Head from "next/head";
-    import styles from "./index.module.css";
-    
-    const Home = () => {
-    
-      return (
-        <div>
-          <Head>
-            <link rel="icon" href="public/favicon.ico" />
-          </Head>
-          <div className={styles.topBar}></div>
-          <div className={styles.pagestyle}>
-            <Link className={styles.brandLogo} href="/">
-              ONE WORLD GAZETTE
-            </Link>
-            <div className={styles.newsFeed}>"""
+    # format: off
+    home_template = \
+"""import Link from "next/link";
+import Head from "next/head";
+import styles from "./index.module.css";
+
+const Home = () => {
+
+  return (
+    <div>
+      <Head>
+        <link rel="icon" href="public/favicon.ico" />
+      </Head>
+      <div className={styles.topBar}></div>
+      <div className={styles.pagestyle}>
+        <Link className={styles.brandLogo} href="/">
+          ONE WORLD GAZETTE
+        </Link>
+        <div className={styles.newsFeed}>"""
     home_template += make_newsfeed(titulares, edition_index)
     home_template +="""
-            </div>
-            <Link className={styles.bigButton} href="/catalog">
-              🌐
-            </Link>
-          </div>
         </div>
-      );
-    };
-    
-    export default Home;
+        <Link className={styles.bigButton} href="/catalog">
+          🌐
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
     """
+    # format: on
     return home_template
 
 if __name__=='__main__':

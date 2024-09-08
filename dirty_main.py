@@ -1,5 +1,4 @@
 import canillita, beomju
-import hexagano
 import json
 
 if __name__ == "__main__":
@@ -7,16 +6,14 @@ if __name__ == "__main__":
     papelerito = canillita.Canillita(beomju.Beomju())
     headlines = {}
     HEADS = []
-    with open("hexagano/hexagano/titulares.json", "r") as f:
+    with open("titulares.json", "r") as f:
         head_art = json.load(f)
         sort_by_headlines = sorted([(list(h.keys())[0],list(h.values())[0],) for h in head_art],key=lambda x:x[0])
         headlines = [x[0] for x in sort_by_headlines]
         articles = [y[1] for y in sort_by_headlines]
-        print(headlines)
+        # print(headlines)
         HEADS = ['-'.join(h.split(' ')[:10]).replace("'",'').replace('´','').replace(',','').replace('(','').replace(')','') for h in headlines]
-        print(HEADS)
+        # print(HEADS)
     papelerito.make_articles_routes(path=f"e{edition}", headlines=HEADS)
     papelerito.make_pages(f"e{edition}", headlines, articles)
-    from maker.make_home_page import make_home_page
-    with open("page.jsx", "w") as f:
-        f.write(make_home_page(HEADS, edition))
+    papelerito.make_home_page(HEADS, edition)
