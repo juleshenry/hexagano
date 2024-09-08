@@ -16,6 +16,7 @@ def producir(edition):
     hl_dicc = asyncio.run(
         lector.leer(edition)
     )[0]['result']
+    print("Total Headlines ingested: ", len(hl_dicc))
     titulares = escritor.identifica_importante([entry['headline'] for entry in hl_dicc])
     articulos = [escritor.escribir_articulo(titular) for titular in titulares]
     return [{t:a} for t,a in zip(titulares, articulos)]
@@ -26,6 +27,7 @@ def export_as_json(produzed):
         json.dump(produzed, f)
         
 if __name__ == "__main__":
+    # exploratory code. just use producir otherwise
     tit_art = producir()
     export_as_json(tit_art)
     

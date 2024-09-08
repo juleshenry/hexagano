@@ -1,5 +1,3 @@
-
-
 def make_newsfeed(titulares, edition_index):
     news_template = f"""
     <hr className={{styles.separator}} />
@@ -11,12 +9,13 @@ def make_newsfeed(titulares, edition_index):
     html += "<hr className={styles.separator} />"
     # properly indent
     final_html = ""
-    for l in html.split('\n'):
-        final_html += ' '*10 + l + "\n"
+    for l in html.split("\n"):
+        final_html += " " * 10 + l + "\n"
     return final_html
 
+
 def make_home_page(titulares, edition_index):
-    # format: off
+    # fmt: off
     home_template = \
 """import Link from "next/link";
 import Head from "next/head";
@@ -48,9 +47,10 @@ const Home = () => {
 
 export default Home;
     """
-    # format: on
+    # fmt: on
     return home_template
 
-if __name__=='__main__':
+
+if __name__ == "__main__":
     titulares = ["t1", "t2", "t3"]
     print(make_home_page(titulares))
